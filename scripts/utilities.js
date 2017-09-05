@@ -1,4 +1,4 @@
-var forEach = function forEach() {
+var forEacha = function forEacha() {
   console.log("This section of code is working");
   //loop through all elements in points array, NOT poiintsArray!!
   for (var i = 0; i < points.length; i++) {
