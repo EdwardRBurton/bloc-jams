@@ -30,6 +30,22 @@
      ]
  };
 
+ // Ed's Example Album
+ var albumTube = {
+     title: 'In The Shadows',
+     artist: 'Tube & Berger & Ante Perry',
+     label: 'EDM',
+     year: '2015',
+     albumArtUrl: 'assets/images/album_covers/02.png',
+     songs: [
+         { title: 'In The Shadows(joeski Remix)', duration: '6:38' },
+         { title: 'Ding, ding, ding', duration: '5:01' },
+         { title: 'Fits in your pocket', duration: '3:21'},
+         { title: 'Can you hear me?', duration: '3:14' },
+         { title: 'Wrong!', duration: '2:15'}
+     ]
+ };
+
  var createSongRow = function(songNumber, songName, songLength) {
     var template =
        '<tr class="album-view-song-item">'
@@ -41,14 +57,13 @@
 
     return template;
 };
-
-var setCurrentAlbum = function(album) {
     //  select all of the HTML elements required to display on the album page
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+var setCurrentAlbum = function(album) {
 
     // identifies the first child node of an element
     // returns or sets the value of a node
@@ -68,4 +83,14 @@ var setCurrentAlbum = function(album) {
 };
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+
+    var albums = [albumPicasso, albumMarconi, albumTube];
+    var index = 1;
+    albumImage.addEventListener("click", function(event){
+      setCurrentAlbum(albums[index]);
+      index++;
+      if (index == albums.length){
+          index = 0;
+      }
+    });
 };
