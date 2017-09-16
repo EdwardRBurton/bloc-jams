@@ -19,7 +19,6 @@ var collectionItemTemplate =
     var collectionContainer = document.getElementsByClassName('album-covers')[0];
     // clear the content from innerHTML
     collectionContainer.innerHTML = '';
-
     // insets collectionItemTemplate into the innerHTML of collectionContainer
     for (var i = 0; i <12; i++) {
         collectionContainer.innerHTML += collectionItemTemplate;
