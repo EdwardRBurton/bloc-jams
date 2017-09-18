@@ -66,6 +66,16 @@ var setCurrentAlbum = function(album) {
         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
     }
 };
+
+//move up and look for parent element
+//logic = if parent element === target parent name; return that parent name
+// loop through each parent node in the DOM
+
+
+var elem = document.querySelector('.song-item-number');
+var closestElem = getClosest(elem.parentNode, '.song-item-number');
+
+
  // Elements we'll be adding listeners to
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 var songRows = document.getElementsByClassName('album-view-song-item');
