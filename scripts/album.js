@@ -140,15 +140,15 @@ window.onload = function() {
             }
       }
 });
-for (var i = 0; i < songRows.length; i++) {
-    songRows[i].addEventListener('mouseleave', function(event) {
-      // cached the song item that we're leaving in a variable
-       var songItem = getSongItem(event.target);
-       var songItemNumber = songItem.getAttribute('data-song-number');
-      // checks that the item the mouse is leaving is not current song
-       if (songItemNumber !== currentlyPlayingSong) {
-              songItem.innerHTML = songItemNumber;
-          }
+          for (var i = 0; i < songRows.length; i++) {
+            songRows[i].addEventListener('mouseleave', function(event) {
+                  // cached the song item that we're leaving in a variable
+                  var songItem = getSongItem(event.target);
+                  var songItemNumber = songItem.getAttribute('data-song-number');
+                  // checks that the item the mouse is leaving is not current song
+                  if (songItemNumber !== currentlyPlayingSong) {
+                    songItem.innerHTML = songItemNumber;
+                  }
     });
 
     songRows[i].addEventListener('click', function(event) {
