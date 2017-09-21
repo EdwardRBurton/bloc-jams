@@ -78,7 +78,7 @@ var currentParent = element.parentElement;
             currentParent = currentParent.parentElement;
         }
         return currentParent;
-    } else if(currentParent !== targetClass){
+    } else if(currentParent.className !== targetClass){
       console.log('No parent found with that class name.')
     }
 };
