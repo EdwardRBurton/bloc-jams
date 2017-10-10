@@ -12,7 +12,13 @@
     var $row = $(template);
 
     var clickHandler = function() {
-
+/*stopped right here.
+Need to use parseInt on ALL songNumber varriables to make each the same type/string
+Right now there is an error when user clicks previousSong icon. It jumps back to the beginging.
+I'm thinking that if I can change the type it will allow the functions to work properly.
+Checkpoint instructions are terrible and just say to:
+"Wrap every variable assignment involving a song number in a parseInt() call."
+*/
       var songNumber = $(this).attr('data-song-number');
 
       if (currentlyPlayingSongNumber !== null) {
@@ -133,7 +139,8 @@ var previousSong = function() {
 
   var $previousSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
   var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
-
+//error here: title is undefined.
+//This is causing the nextSong function to NOT wrap and go back to the first song.
   $previousSongNumberCell.html(pauseButtonTemplate);
   $lastSongNumberCell.html(lastSongNumber);
 };
