@@ -12,14 +12,8 @@
     var $row = $(template);
 
     var clickHandler = function() {
-/*stopped right here.
-Need to use parseInt on ALL songNumber varriables to make each the same type/string
-Right now there is an error when user clicks previousSong icon. It jumps back to the beginging.
-I'm thinking that if I can change the type it will allow the functions to work properly.
-Checkpoint instructions are terrible and just say to:
-"Wrap every variable assignment involving a song number in a parseInt() call."
-*/
-      var songNumber = $(this).attr('data-song-number');
+
+      var songNumber = parseInt($(this).attr('data-song-number'));
 
       if (currentlyPlayingSongNumber !== null) {
         // Revert to song number for currently playing song because user started playing new song.
@@ -44,7 +38,7 @@ Checkpoint instructions are terrible and just say to:
 
     var onHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
-        var songNumber = songNumberCell.attr('data-song-number');
+        var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(playButtonTemplate);
@@ -53,7 +47,7 @@ Checkpoint instructions are terrible and just say to:
 
     var offHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
-        var songNumber = songNumberCell.attr('data-song-number');
+        var songNumber = parseInt(songNumberCell.attr('data-song-number'));
         console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(songNumber);
@@ -99,9 +93,10 @@ var trackIndex = function(album, song) {
 var nextSong = function() {
   var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
 
-  currentSongIndex++;
   //wraps back to the begining of the songs object
-  if (currentSongIndex > currentAlbum.songs.length) {
+  currentSongIndex++;
+
+  if (currentSongIndex >= currentAlbum.songs.length) {
     currentSongIndex = 0;
   }
   //gets the current song number and stores it in new variable
@@ -124,23 +119,25 @@ var previousSong = function() {
   var currentSongIndex = trackIndex(currentAlbum, currentSongFromAlbum);
 
   currentSongIndex--;
-  //wraps back to the begining of the songs object
-  if (currentSongIndex < currentAlbum.songs.length) {
-    currentSongIndex = 0;
+  //wraps around
+  if (currentSongIndex < 0) {
+    currentSongIndex = currentAlbum.songs.length - 1;
   }
   //gets the current song number and stores it in new variable
   var lastSongNumber = currentlyPlayingSongNumber;
 
+  //set a new current song
   currentlyPlayingSongNumber = currentSongIndex + 1;
   currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
 
-//update the player bar info
+  //update the player bar info
   updatePlayerBarSong();
+
+  $('.main-controls .play-pause').html(playerBarPauseButton);
 
   var $previousSongNumberCell = $('.song-item-number[data-song-number="' + currentlyPlayingSongNumber + '"]');
   var $lastSongNumberCell = $('.song-item-number[data-song-number="' + lastSongNumber + '"]');
-//error here: title is undefined.
-//This is causing the nextSong function to NOT wrap and go back to the first song.
+
   $previousSongNumberCell.html(pauseButtonTemplate);
   $lastSongNumberCell.html(lastSongNumber);
 };
