@@ -1,4 +1,3 @@
-// Example Album
 
  var createSongRow = function(songNumber, songName, songLength) {
     var template =
