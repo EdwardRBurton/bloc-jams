@@ -1,4 +1,3 @@
-<<<<<<< current
 var animatePoints = function() {
   var revealPoint = function() {
     // #7
@@ -22,7 +21,6 @@ $(window).load(function() {
     }
   });
 });
-=======
 var pointsArray = document.getElementsByClassName('point');
 
 var animatePoints = function(points) {
@@ -53,4 +51,3 @@ window.onload = function() {
     }
   });
 }
->>>>>>> before discard
