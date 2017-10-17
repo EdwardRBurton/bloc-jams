@@ -1,4 +1,3 @@
-
 var setSong = function(songNumber){
 
   //assigning new value to currentlyPlayingSongNumber
