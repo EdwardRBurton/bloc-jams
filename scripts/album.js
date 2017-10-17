@@ -50,7 +50,6 @@ var getSongNumberCell = function(number){
 
     };
 
-//replace all instances where we use the selector with a call to getSongNumberCell()
     var onHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
         var songNumber = parseInt(songNumberCell.attr('data-song-number'));
@@ -144,7 +143,7 @@ var previousSong = function() {
   //set a new current song
   currentlyPlayingSongNumber = setSong(songNumber);
   currentSongFromAlbum = setSong(songNumber);
-
+console.log(currentSongFromAlbum);
   //update the player bar info
   updatePlayerBarSong();
 
@@ -158,7 +157,7 @@ var previousSong = function() {
 };
 
 var updatePlayerBarSong = function (){
-
+console.log(currentSongFromAlbum);
   $('.currently-playing .song-name').text(currentSongFromAlbum.title);
   $('.currently-playing .artist-name').text(currentAlbum.artist);
   $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
