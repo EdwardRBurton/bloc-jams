@@ -46,7 +46,7 @@ var getSongNumberCell = function(number){
         // Revert to song number for currently playing song because user started playing new song.
         var currentlyPlayingCell = getSongNumberCell ( currentlyPlayingSongNumber );
 
-        currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
+        currentlyPlayingCell = getSongNumberCell( currentlyPlayingSongNumber );
         currentlyPlayingCell.html( currentlyPlayingSongNumber );
       }
       if (currentlyPlayingSongNumber !== songNumber) {
@@ -139,7 +139,7 @@ var nextSong = function() {
   currentSoundFile.play();
   setSong( currentSongIndex + 1 );
 
-//update the player bar info
+//update the player `bar info
   updatePlayerBarSong();
 
   var $nextSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
@@ -175,6 +175,25 @@ var previousSong = function() {
   $lastSongNumberCell.html(lastSongNumber);
 };
 
+//toggles the player bar from play to pause
+var togglePlayFromPlayerBar = function (){
+
+  if( currentSoundFile.isPaused() ){
+    //change the cell from play to pause
+      //look at line 49 for help
+    //chnage the HTML of player bar to pause
+      $(this).html(playButtonTemplate);
+    //play the song
+  } else {
+    //change the cell from pause to play
+
+    //change the HTML of the player bar to play
+    $(this).html(pauseButtonTemplate);
+    //pause the song
+  }
+
+
+};
 var updatePlayerBarSong = function (){
   $('.currently-playing .song-name').text(currentSongFromAlbum.title);
   $('.currently-playing .artist-name').text(currentAlbum.artist);
@@ -194,11 +213,13 @@ var currentSongFromAlbum = null;
 var currentSoundFile = null;
 var currentVolume = 80;
 
+var $playerBarPPButton = $('.main-controls .play-pause');
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
-    $nextButton.click(nextSong);
+    $nextButton.click( nextSong );
+    $playerBarPPButton.click( togglePlayFromPlayerBar );
 });
