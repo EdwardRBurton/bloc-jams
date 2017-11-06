@@ -46,7 +46,7 @@ var getSongNumberCell = function(number){
         // Revert to song number for currently playing song because user started playing new song.
         var currentlyPlayingCell = getSongNumberCell ( currentlyPlayingSongNumber );
 
-        currentlyPlayingCell = getSongNumberCell( currentlyPlayingSongNumber );
+        currentlyPlayingCell = getSongNumberCell ( currentlyPlayingSongNumber );
         currentlyPlayingCell.html( currentlyPlayingSongNumber );
       }
       if (currentlyPlayingSongNumber !== songNumber) {
@@ -136,10 +136,10 @@ var nextSong = function() {
   }
   //gets the current song number and stores it in new variable
   var lastSongNumber = currentlyPlayingSongNumber;
-  currentSoundFile.play();
+  //set a new current song
   setSong( currentSongIndex + 1 );
-
-//update the player `bar info
+  currentSoundFile.play();
+//update the player bar info
   updatePlayerBarSong();
 
   var $nextSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
@@ -159,7 +159,6 @@ var previousSong = function() {
   }
   //gets the current song number and stores it in new variable
   var lastSongNumber = currentlyPlayingSongNumber;
-
   //set a new current song
   setSong( currentSongIndex + 1 );
   currentSoundFile.play();
@@ -180,16 +179,18 @@ var togglePlayFromPlayerBar = function (){
 
   if( currentSoundFile.isPaused() ){
     //change the cell from play to pause
-      //look at line 49 for help
-    //chnage the HTML of player bar to pause
-      $(this).html(playButtonTemplate);
+    getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
+    //change the HTML of player bar to pause
+    $playerBarPPButton.html(playerBarPauseButton);
     //play the song
+    currentSoundFile.play();
   } else {
     //change the cell from pause to play
-
+    getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
     //change the HTML of the player bar to play
-    $(this).html(pauseButtonTemplate);
+    $playerBarPPButton.html(playerBarPlayButton);
     //pause the song
+    currentSoundFile.pause();
   }
 
 
@@ -198,7 +199,6 @@ var updatePlayerBarSong = function (){
   $('.currently-playing .song-name').text(currentSongFromAlbum.title);
   $('.currently-playing .artist-name').text(currentAlbum.artist);
   $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-
   $('.main-controls .play-pause').html(playerBarPauseButton);
 };
 
