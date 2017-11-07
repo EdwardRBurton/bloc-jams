@@ -63,6 +63,12 @@ var getSongNumberCell = function(number){
         $(this).html(pauseButtonTemplate);
         currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
         updatePlayerBarSong();
+
+        var $volumeFill = $( '.volume .fill' );
+        var $volumeThumb = $( '.volume .thumb' );
+        $volumeFill.width( currentVolume + '%' );
+        $volumeThumb.css( {left: currentVolume + '%' });
+
       } else if (currentlyPlayingSongNumber === songNumber) {
           if ( currentSoundFile.isPaused() ){
             $(this).html(pauseButtonTemplate);
