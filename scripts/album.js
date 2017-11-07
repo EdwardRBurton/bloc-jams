@@ -186,23 +186,25 @@ var previousSong = function() {
 
 //toggles the player bar from play to pause
 var togglePlayFromPlayerBar = function (){
-//issue or bug here from Dev console
-  if( currentSoundFile.isPaused() ){
-    //change the cell from play to pause
-    getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
-    //change the HTML of player bar to pause
-    $playerBarPPButton.html(playerBarPauseButton);
-    //play the song
-    currentSoundFile.play();
-  } else {
-    //change the cell from pause to play
-    getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
-    //change the HTML of the player bar to play
-    $playerBarPPButton.html(playerBarPlayButton);
-    //pause the song
-    currentSoundFile.pause();
-  }
+//issue or bug here from Dev console, added extra if statement to check for currentlyPlayingSongNumber
+  if ( currentlyPlayingSongNumber ){
+    if( currentSoundFile.isPaused() ){
+      //change the cell from play to pause
+      getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
+      //change the HTML of player bar to pause
+      $playerBarPPButton.html(playerBarPauseButton);
+      //play the song
+      currentSoundFile.play();
+    } else {
+      //change the cell from pause to play
+      getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
+      //change the HTML of the player bar to play
+      $playerBarPPButton.html(playerBarPlayButton);
+      //pause the song
+      currentSoundFile.pause();
+    }
 
+  }
 
 };
 
